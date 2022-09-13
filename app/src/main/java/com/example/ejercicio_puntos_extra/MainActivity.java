@@ -37,18 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
                 String palabra = etTexto.getText().toString().trim();
 
-                if (palabra.equals(" ")) {
-                    Toast.makeText(getApplicationContext(), "FAVOR DE UNA PALABRA", Toast.LENGTH_LONG);
+                if (palabra.equals("")) {
+                    Toast.makeText(getApplicationContext(), "FAVOR DE PONER UNA PALABRA", Toast.LENGTH_LONG).show();
 
                 } else {
-                  String aux = etTexto.getText().toString();
-                   alPalabras.add(aux);
+                    if (palabra.length() <= 3)
+                        Toast.makeText(getApplicationContext(),"INGRESE UNA PALABRA MÀS LARGA",Toast.LENGTH_LONG).show();
+                    else {
+                        alPalabras.add(palabra);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,alPalabras);
+                        lvLista.setAdapter(adapter);
+                        etTexto.setText("");
 
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,alPalabras);
+                    }
+                   }
 
-                lvLista.setAdapter(adapter);
-                etTexto.setText("");
 
             }
 
