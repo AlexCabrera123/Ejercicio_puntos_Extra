@@ -48,12 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,alPalabras);
 
                 lvLista.setAdapter(adapter);
-                lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                etTexto.setText("");
 
-                    }
-                });
             }
 
 
