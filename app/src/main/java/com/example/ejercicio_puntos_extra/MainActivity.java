@@ -15,49 +15,61 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText etTexto;
-    private Button bRegistrar;
+    private Button bOrdenar,bGuardar;
     private ListView lvLista;
-    private ArrayList alPalabras;
+    private ArrayList alnumeros;
+    private EditText etGuardar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        etTexto = findViewById(R.id.etTexto);
-        bRegistrar = findViewById(R.id.bRegistrar);
+        etGuardar = findViewById(R.id.etGuardar);
+        bGuardar = findViewById(R.id.bGuardar);
+        bOrdenar = findViewById(R.id.bRegistrar);
         lvLista = findViewById(R.id.lvlista);
-        alPalabras = new ArrayList<String>();
 
-        bRegistrar.setOnClickListener(new View.OnClickListener() {
+        ArrayList<Integer> alnumeros = new ArrayList<>();
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_list_item_1,alnumeros);
+
+        bGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                String palabra = etTexto.getText().toString().trim();
-
-                if (palabra.equals("")) {
-                    Toast.makeText(getApplicationContext(), "FAVOR DE PONER UNA PALABRA", Toast.LENGTH_LONG).show();
-
-                } else {
-                    if (palabra.length() <= 3)
-                        Toast.makeText(getApplicationContext(),"INGRESE UNA PALABRA MÀS LARGA",Toast.LENGTH_LONG).show();
-                    else {
-                        alPalabras.add(palabra);
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,alPalabras);
-                        lvLista.setAdapter(adapter);
-                        etTexto.setText("");
-
-                    }
-                   }
-
-
+                int aux = Integer.parseInt(etGuardar.getText().toString().trim());
+                alnumeros.add(aux);
+                etGuardar.setText("");
+                adapter.notifyDataSetChanged();
+                lvLista.setAdapter(adapter);
             }
-
-
         });
+
+        bOrdenar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int temp = 0;
+                for(int i=0; i < alnumeros.size(); i++){
+                    for(int j=1; j < (alnumeros.size()-i); j++){
+                        if(alnumeros.get(j - 1) > alnumeros.get(j)){
+                            //swap elements
+                            temp = alnumeros.get(j - 1);
+                            alnumeros.set(j - 1, alnumeros.get(j));
+                            alnumeros.set(j, temp);
+                        }
+                    }
+                }
+                System.out.println("Array After Bubble Sort");
+                for(int i=0; i < alnumeros.size(); i++){
+                    System.out.print(alnumeros.get(i) + " ");
+                }
+                ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_list_item_1,alnumeros);
+                lvLista.setAdapter(adapter);
+            }
+        });
+
+        };
 
 
     }
-}
+    

@@ -8,28 +8,32 @@
 
 
     <EditText
-        android:id="@+id/etTexto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/blue"
-        android:hint="INGRESA PALABRA"
-        android:inputType="" />
+        android:id="@+id/etGuardar"
+        android:inputType="number"
+        android:hint="Ingrese un número"
+        ></EditText>
+
 
     <Button
+        android:layout_below="@+id/etGuardar"
         android:id="@+id/bRegistrar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/purple_200"
-        android:text="REGISTRAR"
+        android:text="ORDENAR"
         android:textSize="20sp" />
+
+    <Button
+        android:layout_below="@+id/etGuardar"
+        android:id="@+id/bGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_200"
+        android:text="ORDENAR"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"/>
 
     <ListView
         android:id="@+id/lvlista"
@@ -38,6 +42,7 @@
         android:layout_below="@id/bRegistrar"
 
         />
+
 
 
 </RelativeLayout>
