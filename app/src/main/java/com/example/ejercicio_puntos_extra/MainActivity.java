@@ -37,11 +37,25 @@ public class MainActivity extends AppCompatActivity {
         bGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int aux = Integer.parseInt(etGuardar.getText().toString().trim());
-                alnumeros.add(aux);
-                etGuardar.setText("");
-                adapter.notifyDataSetChanged();
-                lvLista.setAdapter(adapter);
+                String input = etGuardar.getText().toString().trim();
+                if (input.equals(""))
+                    Toast.makeText(getApplicationContext(),"Favor de ingresar un número",Toast.LENGTH_LONG).show();
+                else{
+                    int aux = Integer.parseInt(input);
+                    for (int i = 0; i < alnumeros.size(); i++) {
+                        if (alnumeros.get(i) == aux){
+                            Toast.makeText(getApplicationContext(),"El entero" +aux+ "ya existe",Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+
+                    alnumeros.add(aux);
+                    etGuardar.setText("");
+                    adapter.notifyDataSetChanged();
+                    lvLista.setAdapter(adapter);
+                }
+
             }
         });
 
