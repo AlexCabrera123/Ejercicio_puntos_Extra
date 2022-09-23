@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         etGuardar = findViewById(R.id.etGuardar);
-        bGuardar = findViewById(R.id.bGuardar);
-        bOrdenar = findViewById(R.id.bRegistrar);
+        bGuardar = findViewById(R.id.bRegistrar);
+        bOrdenar = findViewById(R.id.bLimpiar);
         lvLista = findViewById(R.id.lvlista);
 
         ArrayList<Integer> alnumeros = new ArrayList<>();
@@ -42,21 +42,29 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Favor de ingresar un número",Toast.LENGTH_LONG).show();
                 else{
                     int aux = Integer.parseInt(input);
+                    int suma=0;
+                    int cantidad=0;
+                    float promedio=0;
+
                     for (int i = 0; i < alnumeros.size(); i++) {
-                        if (alnumeros.get(i) == aux){
-                            Toast.makeText(getApplicationContext(),"El entero" +aux+ "ya existe",Toast.LENGTH_LONG).show();
+                        suma = suma + alnumeros.get(i);
+                        cantidad=cantidad+1;
+                        promedio=suma/cantidad;
                         }
-
-
-                    }
 
                     alnumeros.add(aux);
                     etGuardar.setText("");
                     adapter.notifyDataSetChanged();
                     lvLista.setAdapter(adapter);
+                    System.out.println("La cantidad de sueldos es " +cantidad);
+                    System.out.println("La suma de los sueldos es "+suma);
+                    System.out.println("El promedio de los sueldos es " +promedio);
+                    }
+
+
                 }
 
-            }
+
         });
 
         bOrdenar.setOnClickListener(new View.OnClickListener() {
